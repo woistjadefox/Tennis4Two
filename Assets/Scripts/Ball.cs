@@ -9,8 +9,6 @@ namespace GameLab.Tennis4Two {
 
         [Header("Settings")]
         [SerializeField]
-        private Transform net;
-        [SerializeField]
         private LayerMask groundLayer;
         [SerializeField]
         private int maxGroundHits = 1;
@@ -23,7 +21,15 @@ namespace GameLab.Tennis4Two {
         [SerializeField]
         private float movementThreshold = 0.35f;
 
+        [Header("References")]
+        [SerializeField]
+        private Transform net;
+        [SerializeField]
+        private Logic logic;
+
         [Header("Events")]
+        [SerializeField]
+        private UnityEvent onGroundHit;
         [SerializeField]
         private UnityEvent onReachedMaxGroundHits;
 
@@ -48,6 +54,21 @@ namespace GameLab.Tennis4Two {
             lastPlayer = player;
         }
 
+        public Transform GetNet()
+        {
+            return net;
+        }
+
+        public void SetNet(Transform target)
+        {
+            net = target;
+        }
+
+        public void SetLogic(Logic target) 
+        {
+            logic = target;
+        }
+
         public int GetGroundHits(int playerNr)
         {
             return groundHits[playerNr];
@@ -63,29 +84,66 @@ namespace GameLab.Tennis4Two {
             // check if we have a collision with the ground
             if(groundLayer == (groundLayer | (1 << collision.gameObject.layer))) 
             {
-                int player;
-
-                if(GetRigidbody().position.x < net.position.x) 
-                {
-                    player = 0;
-                    ResetGroundHits(1);
-                } else {
-                    player = 1;
-                    ResetGroundHits(0);
-                }
-
-                groundHits[player]++;
-
-                CheckMaxGroundHits(groundHits[player]);
+                HandleGorundHit();
             }
 		}
 
-        private void CheckMaxGroundHits(int hits) {
-            
-            if(hits > maxGroundHits)
+		private void Start()
+		{
+			if(net == null || logic == null) 
             {
-                onReachedMaxGroundHits.Invoke();
+                Debug.LogWarning(gameObject.name + ": missing references on script!");
+                GetRigidbody().isKinematic = true;
+                enabled = false;
             }
+		}
+
+        private void HandleGorundHit() 
+        {
+            // trigger UnityEvent for effect etc.
+            onGroundHit.Invoke();
+
+            // check if the ball hits the ground on the left side of the net
+            if (GetRigidbody().position.x < net.position.x) {
+                
+                groundHits[0]++;
+                ResetGroundHits(1);
+
+                if (HasMaxGroundHits(0)) {
+                    // count point for player 1
+                    logic.CountPointForPlayer(1);
+
+                    // spawn to player 0
+                    GetRigidbody().isKinematic = true;
+                    GetRigidbody().position = logic.GetPlayer(0).transform.position;
+                }
+
+            } else {
+
+                groundHits[1]++;
+                ResetGroundHits(0);
+
+                if (HasMaxGroundHits(1)) {
+                    // count point for player 0
+                    logic.CountPointForPlayer(0);
+
+                    // spawn to player 1
+                    GetRigidbody().isKinematic = true;
+                    GetRigidbody().position = logic.GetPlayer(1).transform.position;
+                }
+            }
+        }
+
+        private bool HasMaxGroundHits(int player) {
+            
+            if(groundHits[player] > maxGroundHits)
+            {
+                SetLastPlayer(null);
+                onReachedMaxGroundHits.Invoke();
+                return true;
+            }
+
+            return false;
         }
 
 		private void FixedUpdate()

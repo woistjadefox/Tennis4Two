@@ -18,6 +18,7 @@ namespace GameLab.Tennis4Two {
         private Ball nextBall;
         private List<Ball> balls = new List<Ball>();
 
+
         public string GetPlayerName()
         {
             return playerName;
@@ -80,6 +81,7 @@ namespace GameLab.Tennis4Two {
             force *= 50 * Time.deltaTime;
 
             // apply force
+            ball.GetRigidbody().isKinematic = false;
             ball.GetRigidbody().velocity = Vector3.zero;
             ball.GetRigidbody().AddForce(dir * force, ForceMode.Impulse);
 
