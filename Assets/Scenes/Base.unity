@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNr: 0
   playerName: Player1
-  hitForce: 20
+  hitForce: 25
 --- !u!1 &40339037
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -402,7 +402,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 67
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -427,7 +427,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 344369577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: -17.8}
+  m_LocalPosition: {x: 0, y: 9.57, z: -23.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1017,8 +1017,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 126.9, y: 0.000015258789}
-  m_SizeDelta: {x: 38.87, y: 17.65}
+  m_AnchoredPosition: {x: 126.9, y: -0.765}
+  m_SizeDelta: {x: 38.87, y: 28.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1291855682
 MonoBehaviour:
@@ -1511,8 +1511,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 27, y: 0.0000024438}
-  m_SizeDelta: {x: 38.87, y: 17.65}
+  m_AnchoredPosition: {x: 27, y: 0.0000063181}
+  m_SizeDelta: {x: 38.87, y: 29.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1723622160
 MonoBehaviour:
@@ -1645,8 +1645,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1806322008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 4.936, z: 0}
-  m_LocalScale: {x: 12.8756695, y: 9.7508545, z: 6}
+  m_LocalPosition: {x: 11.798, y: 5, z: 0}
+  m_LocalScale: {x: 21.737034, y: 9.750846, z: 6}
   m_Children: []
   m_Father: {fileID: 1570270995}
   m_RootOrder: 1
@@ -1856,7 +1856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1955,8 +1955,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017165044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 4.936, z: 0}
-  m_LocalScale: {x: 12.875665, y: 9.750846, z: 6}
+  m_LocalPosition: {x: -11.798, y: 5, z: 0}
+  m_LocalScale: {x: 21.737034, y: 9.750846, z: 6}
   m_Children: []
   m_Father: {fileID: 1570270995}
   m_RootOrder: 0
@@ -2090,7 +2090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNr: 1
   playerName: Player2
-  hitForce: 20
+  hitForce: 25
 --- !u!4 &2135667644
 Transform:
   m_ObjectHideFlags: 0

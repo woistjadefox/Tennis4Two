@@ -114,8 +114,7 @@ namespace GameLab.Tennis4Two {
                     logic.CountPointForPlayer(1);
 
                     // spawn to player 0
-                    GetRigidbody().isKinematic = true;
-                    GetRigidbody().position = logic.GetPlayer(0).transform.position;
+                    SpawnBallToPlayerSide(0);
                 }
 
             } else {
@@ -128,10 +127,17 @@ namespace GameLab.Tennis4Two {
                     logic.CountPointForPlayer(0);
 
                     // spawn to player 1
-                    GetRigidbody().isKinematic = true;
-                    GetRigidbody().position = logic.GetPlayer(1).transform.position;
+                    SpawnBallToPlayerSide(1);
                 }
             }
+        }
+
+        private void SpawnBallToPlayerSide(int player) {
+
+            ResetGroundHits(player);
+
+            GetRigidbody().isKinematic = true;
+            GetRigidbody().position = logic.GetPlayer(player).GetSpawnPoint();
         }
 
         private bool HasMaxGroundHits(int player) {

@@ -33,8 +33,9 @@ namespace GameLab.Tennis4Two {
 
                 if (ball != null) {
 
-                    // reset gorund hits of ball
-                    balls.Add(ball);
+                    if(balls.Contains(ball) == false) {
+                        balls.Add(ball);
+                    }
                 }
             }
         }
@@ -84,7 +85,6 @@ namespace GameLab.Tennis4Two {
             ball.GetRigidbody().isKinematic = false;
             ball.GetRigidbody().velocity = Vector3.zero;
             ball.GetRigidbody().AddForce(dir * force, ForceMode.Impulse);
-
         }
 
         private Ball GetNextBall()
@@ -96,6 +96,16 @@ namespace GameLab.Tennis4Two {
             }
 
             return null;
+        }
+
+        public Vector3 GetSpawnPoint() {
+
+                return transform.position + new Vector3(
+                   (Random.value - 0.5f) * transform.localScale.x * 0.75f,
+                   (Random.value - 0.5f) * transform.localScale.y * 0.75f,
+                   0f
+                );
+            
         }
     }
 }
